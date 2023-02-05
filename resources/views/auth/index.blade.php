@@ -16,39 +16,44 @@
                     </div>
                 </form>
             </div>
+
             <div class="lg:grid lg:grid-cols-7 lg:gap-2 border rounded-md shadow p-2 flex items-center justify-center text-center space-y-1 bg-gray-100">
                 <div class="font-bold text-gray-600">#</div>
                 <div class="font-bold text-gray-600">Task</div>
-                <div class="font-bold text-gray-600">Descrição</div>
                 <div class="font-bold text-gray-600">Status</div>
+                <div class="font-bold text-gray-600">Data de Inicio </div>
                 <div class="font-bold text-gray-600">Data de Conclusão</div>
                 <div class="font-bold text-gray-600 col-span-2">Ações</div>
                 @foreach($tasks as $task)
                     <div>{{$task->id}}</div>
                     <div>{{$task->title}}</div>
-                    <div>{{$task->description}}</div>
                     <div>{{$task->status}}</div>
+                    <div>{{\Carbon\Carbon::parse($task->created_at)->format('d/m/Y')}}</div>
                     <div>{{ Carbon\Carbon::parse($task->date_end)->format('d/m/Y') }}</div>
                     <div class="flex items-center justify-center p-2 space-x-2 col-span-2">
                         @if($task->status != 'Finalizado')
-                            <a href="{{route('show.task.update',$task->id)}}" class="edit mt-3 text-white text-sm p-4 px-4 py-1 hover:bg-blue-400 rounded inline-flex items-center bg-blue-500 ">Editar</a>
+                            <a href="{{route('show.task.update',$task->id)}}" class="w-20 edit text-white text-sm p-4 px-4 py-1 hover:bg-blue-400 rounded bg-blue-500 ">Editar</a>
                         @endif
+
                         <form action="{{route('delete.task',$task->id)}}" method="post">
-                            {{--para usar o metodo delete no @method vc tem que utilizar no form o metodo post--}}
+{{--                            para usar o metodo delete no @method vc tem que utilizar no form o metodo post--}}
                             @method('delete')
                             @csrf
-                            <button class="mt-3 inline-flex items-center bg-red-500 text-sm p-3 px-4 py-1 rounded text-white hover:bg-red-400">Deletar</button>
+                            <button class="bg-red-500 text-sm p-3 px-4 py-1
+                            rounded text-white hover:bg-red-400 w-20"
+                                >Deletar</button>
                         </form>
                         @if($task->status != 'Finalizado')
                             <form action="{{route('end.task', $task->id)}}" method="post">
                                 @method('put')
                                 @csrf
-                                <button class="mt-3 inline-flex items-center bg-green-500 text-sm p-3 px-4 py-1 rounded text-white hover:bg-green-400">Concluir</button>
+                                <button class="w-20 bg-green-500 text-sm p-3 px-4 py-1 rounded text-white hover:bg-green-400">Concluir</button>
                             </form>
                         @endif
                     </div>
                 @endforeach
             </div>
+
             <div class="text-right">
                 {{$tasks->links()}}
             </div>

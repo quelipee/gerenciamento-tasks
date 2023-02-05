@@ -40,7 +40,7 @@ class DeleteFinishedTasks implements ShouldQueue
         foreach ($tasks as $task)
         {
             $date = Carbon::now()->diffInDays($task['date_end'],false);
-            if ($date <= -5)
+            if ($date <= -5 and $task['status'] == "Finalizado")
             {
                 $task->delete();
             }

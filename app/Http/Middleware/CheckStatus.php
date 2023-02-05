@@ -23,12 +23,15 @@ class CheckStatus
     {
         $user = User::with('task')->find(Auth::user()->id);
         $use1 = $user->task;
-        foreach ($use1 as $key => $use)
+        foreach ($use1 as $use)
         {
-            if ($use['date_end'] <= Carbon::now()->toDateString())
+            if ($use['status'] == 'Em andamento')
             {
-                $use['status'] = "Finalizado";
-                $use->save();
+                if ($use['date_end'] <= Carbon::now()->toDateString())
+                {
+                    $use['status'] = "Finalizado";
+                    $use->save();
+                }
             }
         }
         return $next($request);
