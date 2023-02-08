@@ -13,7 +13,7 @@
     <div class="container max-w-5xl px-auto px-4 py-20 h-full">
         <div class="flex flex-col-reverse lg:flex-row">
 
-            <div class="lg:pr-10">
+            <div class="hidden lg:block lg:pr-10">
                 <div>
                     <img src="{{ asset('img/tasks.png') }}" style="height: 500px; width: 500px;" alt="">
                 </div>
@@ -108,6 +108,10 @@
                     <input id="email" name="email" type="text" class="w-full bg-gray-50 border border-gray-300 focus:border-blue-500
                 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition
                 duration-200 ease-in-out focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20" placeholder="Digite seu e-mail.." required>
+
+                    @error('email')
+                    <div class="text-red-400 text-sm">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div>
@@ -132,8 +136,14 @@
     const closeModal = document.querySelectorAll('.close-modal');
 
     showModal.addEventListener('click',function(){
-       modal.classList.remove('hidden')
+       modal.classList.remove('hidden');
+       console.log(modal);
     });
+
+    showModal.addEventListener('click',function(){
+        modal.classList.remove('hidden');
+    });
+
 
     closeModal.forEach(close =>{
        close.addEventListener('click',function(){

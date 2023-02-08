@@ -19,11 +19,34 @@ class TaskRepository
         return response()->json($tasks,Response::HTTP_CREATED);
     }
 
-    public function findTaskUser(int $task)
+    public function getAllTasks()
+    {
+        $users = User::all();
+        $tasks = $users->load('task')->where('id','!=',Auth::id())->toQuery()->paginate(7);
+        return response()->json($tasks,Response::HTTP_CREATED);
+    }
+
+    public function getAllTasksUser(User $user)
+    {
+        $task = $user->load('task')->toArray();
+        return response()->json($task,Response::HTTP_CREATED);
+    }
+
+    public function findTaskUserAuth(int $task)
     {
         $user = Auth::user();
         $user = $user->task()->find($task);
         if (!$user) return response()->json(['Error: ' => Response::HTTP_NOT_FOUND]);
         return $user;
+    }
+
+    public function findTaskUserGuest(int $task)
+    {
+        $task = Task::find($task);
+        if (!$task)
+        {
+            return response()->json($task,Response::HTTP_NOT_FOUND);
+        }
+        return response()->json($task,Response::HTTP_CREATED);
     }
 }

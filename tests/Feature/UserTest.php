@@ -112,4 +112,13 @@ class UserTest extends TestCase
         $response->assertStatus(Response::HTTP_FOUND);
         $this->assertDatabaseMissing('tasks',['title' => $model['title']]);
     }
+
+    public function test_user_can_see_all_users_tasks()
+    {
+        //prepare
+
+        //act
+
+        //assert
+    }
 }

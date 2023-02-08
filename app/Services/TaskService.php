@@ -29,7 +29,7 @@ class TaskService
     public function editTask(taskRequestUpdate $taskRequestUpdate, int $task)
     {
 
-        $task = $this->taskRepository->findTaskUser($task);
+        $task = $this->taskRepository->findTaskUserAuth($task);
         $data = $taskRequestUpdate->validated();
         $data['user_id'] = Auth::user()->id;
         $task->fill($data);
@@ -40,14 +40,14 @@ class TaskService
 
     public function destroy(int $task)
     {
-        $task = $this->taskRepository->findTaskUser($task);
+        $task = $this->taskRepository->findTaskUserAuth($task);
         $task->delete();
         return response()->json([],Response::HTTP_NO_CONTENT);
     }
 
     public function endTask(int $task)
     {
-        $task = $this->taskRepository->findTaskUser($task);
+        $task = $this->taskRepository->findTaskUserAuth($task);
         $data['status'] = 'Finalizado';
         $task->fill($data);
         $task->save();
