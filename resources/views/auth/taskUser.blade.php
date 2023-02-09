@@ -40,11 +40,11 @@
                     @endforeach
                 @endif
             </div>
+            <div class="mt-4">
+                {{$tasks->links()}}
+            </div>
             <div class="text-end p-2">
                 <a class="hover:underline hover:text-blue-400" href="{{route('all.tasks.users')}}">Voltar</a>
-            </div>
-            <div class="p-5">
-                {{$tasks->links()}}
             </div>
         </div>
     </div>

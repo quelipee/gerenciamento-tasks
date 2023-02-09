@@ -39,7 +39,7 @@
                     </a>
                 @endforeach
             </div>
-            <div class="p-5">
+            <div class="mt-4">
                 {{$tasks->links()}}
             </div>
         </div>
