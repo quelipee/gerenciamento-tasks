@@ -11,7 +11,7 @@
 
             <div class="border-b-2 p-4 shadow-md rounded border">
                 <div class="border-b-2 grid grid-cols-5 text-center p-2 text-lg bg-gray-800 text-white font-bold">
-                    <h3>Id</h3>
+                    <h3>#</h3>
                     <h3>Titulo</h3>
                     <h3>Status</h3>
                     <h3>Data de Inicio</h3>

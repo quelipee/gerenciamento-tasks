@@ -6,6 +6,7 @@ use App\Http\Requests\taskRequestStore;
 use App\Http\Requests\taskRequestUpdate;
 use App\Models\Task;
 use App\Repository\TaskRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,7 +49,7 @@ class TaskService
     public function endTask(int $task)
     {
         $task = $this->taskRepository->findTaskUserAuth($task);
-        $data['status'] = 'Finalizado';
+        $data = ['status' => 'Finalizado', 'date_end' => Carbon::now()->toDateString()];
         $task->fill($data);
         $task->save();
 
