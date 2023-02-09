@@ -30,7 +30,14 @@
                     <a href="{{route('task.view',$task->id)}}">
                         <div class="grid grid-cols-6 text-center justify-center p-2 text-lg bg-gray-100 text-gray-600">
                             <div>{{$task->id}}</div>
-                            <div>{{$task->title}}</div>
+                            @php
+                            $title = $task->title;
+                            @endphp
+                            @if(strlen($title) > 17)
+                                <div>{{substr($task->title,0,17) }}</div>
+                            @else
+                                <div>{{$task->title}}</div>
+                            @endif
                             <div>{{$task->status}}</div>
                             <div>{{Carbon\Carbon::parse($task->created_at)->format('d/m/Y')}}</div>
                             <div>{{Carbon\Carbon::parse($task->date_end)->format('d/m/Y')}}</div>
