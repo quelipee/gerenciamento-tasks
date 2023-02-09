@@ -32,10 +32,10 @@
                     <a class="text-sm text-gray-600 hover:text-gray-800 hover:underline hover:text-lg" href="{{route('create.task')}}">Criar Tarefas</a>
                 </li>
                 <li>
-                    <a href="" class="text-sm text-gray-600 hover:text-gray-800 hover:underline hover:text-lg">Sobre nos</a>
+                    <a href="{{route('all.tasks.users')}}" class="text-sm text-gray-600 hover:text-gray-800 hover:underline hover:text-lg">Outras Tarefas</a>
                 </li>
                 <li>
-                    <a href="" class="text-sm text-gray-600 hover:text-gray-800 hover:underline hover:text-lg">Informações</a>
+                    <a href="" class="text-sm text-gray-600 hover:text-gray-800 hover:underline hover:text-lg">Sobre nos</a>
                 </li>
                 <li>
                     <a href="{{route('logout')}}" class="text-sm text-gray-600 hover:text-gray-800 hover:underline hover:text-lg">Sair</a>

@@ -6,6 +6,7 @@ use App\Http\Requests\taskRequestStore;
 use App\Http\Requests\taskRequestUpdate;
 use App\Models\Task;
 use App\Repository\TaskRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,7 @@ class TaskService
     public function editTask(taskRequestUpdate $taskRequestUpdate, int $task)
     {
 
-        $task = $this->taskRepository->findTaskUser($task);
+        $task = $this->taskRepository->findTaskUserAuth($task);
         $data = $taskRequestUpdate->validated();
         $data['user_id'] = Auth::user()->id;
         $task->fill($data);
@@ -40,15 +41,15 @@ class TaskService
 
     public function destroy(int $task)
     {
-        $task = $this->taskRepository->findTaskUser($task);
+        $task = $this->taskRepository->findTaskUserAuth($task);
         $task->delete();
         return response()->json([],Response::HTTP_NO_CONTENT);
     }
 
     public function endTask(int $task)
     {
-        $task = $this->taskRepository->findTaskUser($task);
-        $data['status'] = 'Finalizado';
+        $task = $this->taskRepository->findTaskUserAuth($task);
+        $data = ['status' => 'Finalizado', 'date_end' => Carbon::now()->toDateString()];
         $task->fill($data);
         $task->save();
 

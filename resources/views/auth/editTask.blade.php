@@ -50,7 +50,6 @@
                 focus:ring-blue-500 focus:ring-opacity-20" required>
                             <option value="Em andamento" {{ $task->status == 'Pendente' ? 'selected' : '' }}>Em andamento</option>
                             <option value="Pausado" {{ $task->status == 'Pausado' ? 'selected' : '' }}>Pausado</option>
-                            <option value="Finalizado" {{ $task->status == 'Finalizado' ? 'selected' : '' }}>Finalizado</option>
                         </select>
 
                         @error('status')
@@ -74,7 +73,7 @@
                     </div>
 
                     <div class="col-span-2 space-x-3 inline-flex items-center justify-end w-full">
-                        <a class="hover:underline" href="/index">Voltar</a>
+                        <a class="hover:underline" href="{{route('task.view',$task->id)}}">Voltar</a>
                         <button type="submit" class="rounded-md text-md text-white bg-blue-500 hover:bg-blue-400 px-6 py-2">Adicionar</button>
                     </div>
 
