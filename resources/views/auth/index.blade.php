@@ -29,7 +29,7 @@
                 @foreach($tasks as $key => $task)
                     <a href="{{route('task.view',$task->id)}}">
                         <div class="grid grid-cols-6 text-center justify-center p-2 text-lg bg-gray-100 text-gray-600">
-                            <div>{{$task->id}}</div>
+                            <div>{{$key + ($tasks->currentPage() - 1) * $tasks->perPage()}}</div>
                             @php
                             $title = $task->title;
                             @endphp

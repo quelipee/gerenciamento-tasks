@@ -17,13 +17,13 @@
                     <h3>Data de Inicio</h3>
                     <div>Data de Conclusão</div>
                 </div>
-                @if(empty($tasks))
+                @if(empty($tasks[0]))
                     <h2 class="font-bold text-gray-600 text-4xl text-center p-5">Não existem tarefas desse usuario!!</h2>
                 @else
                     @foreach($tasks as $key => $task_user)
                         <a href="{{route('see.task.id.user',['user' => $user->name,'task' => $task_user->id])}}">
                             <div class="grid grid-cols-5  text-center p-2 text-lg bg-gray-100 text-gray-600">
-                                <div>{{$task_user->id}}</div>
+                                <div>{{$key + ($tasks->currentPage() - 1) * $tasks->perPage()}}</div>
                                 @php
                                     $title = $task_user->title;
                                 @endphp
