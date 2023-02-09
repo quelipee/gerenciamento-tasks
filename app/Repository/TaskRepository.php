@@ -4,11 +4,9 @@ namespace App\Repository;
 
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Cache\Repository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Nette\Utils\Json;
 
 class TaskRepository
 {
@@ -28,7 +26,8 @@ class TaskRepository
 
     public function getAllTasksUser(User $user)
     {
-        $task = $user->load('task')->toArray();
+        $users = User::find($user->id);
+        $task = $users->task()->paginate(7);
         return response()->json($task,Response::HTTP_CREATED);
     }
 

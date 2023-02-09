@@ -17,17 +17,17 @@
                     <h3>Tarefas finalizadas</h3>
                 </div>
                 @foreach($tasks as $key => $task)
-                    <a href="{{route('see.task.user', $task['name'])}}">
+                    <a href="{{route('see.task.user', $task->name)}}">
                         <div class="grid grid-cols-4  text-center p-1 text-lg bg-gray-100 text-gray-600 overflow-hidden text-truncate h-10">
-                            <div>{{$task['name']}}</div>
-                            <div>{{count($task['task'])}}</div>
-                            <div>{{$task['email']}}</div>
+                            <div>{{$task->name}}</div>
+                            <div>{{count($task->task)}}</div>
+                            <div>{{$task->email}}</div>
                             <div>
                                 @php
                                     $total = 0;
                                 @endphp
-                                @foreach($task['task'] as $task_user)
-                                    @if('Finalizado' == $task_user['status'])
+                                @foreach($task->task as $task_user)
+                                    @if('Finalizado' == $task_user->status)
                                         @php
                                             $total += 1;
                                         @endphp

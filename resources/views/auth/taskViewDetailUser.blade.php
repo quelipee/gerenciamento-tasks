@@ -23,7 +23,7 @@
                     <td class="px-4 py-2">{{$task->title}}</td>
                     <td class=" px-4 py-2">{{$task->status}}</td>
                     <td class=" px-4 py-2">{{Carbon\Carbon::parse($task->created_at)->format('d/m/Y')}}</td>
-                    <td class=" px-4 py-2">{{Carbon\Carbon::parse($task->data_end)->format('d/m/Y')}}</td>
+                    <td class=" px-4 py-2">{{Carbon\Carbon::parse($task->date_end)->format('d/m/Y')}}</td>
 {{--                    <td class=" px-4 py-2">--}}
 {{--                        <form action="{{route('show.task.update',$task->id)}}">--}}
 {{--                            @if($task->status == 'Finalizado')--}}

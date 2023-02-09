@@ -85,6 +85,7 @@ class TaskController extends Controller
     public function taskUser(User $user)//ve detalhadamente as tarefas do usuario que vc desejar
     {
         $tasks = $this->taskRepository->getAllTasksUser($user);
-        return view('auth/taskUser',['tasks' => $tasks->original]);
+        $user_guest = User::find($user->id);
+        return view('auth/taskUser',['tasks' => $tasks->original, 'user' => $user_guest]);
     }
 }
