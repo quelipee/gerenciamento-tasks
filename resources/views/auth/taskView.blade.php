@@ -5,7 +5,7 @@
             <div class="text-center p-2">
                 <h2 class="text-4xl font-extrabold text-transparent
                                 bg-clip-text bg-gradient-to-r
-                                from-blue-blue_gradient_first to-blue-blue_gradient_end">Tarefa: {{$task->id}}</h2>
+                                from-blue-blue_gradient_first to-blue-blue_gradient_end">{{$task->title}}</h2>
             </div>
 
             <table class="table-fixed w-full text-center bg-white shadow-md">
