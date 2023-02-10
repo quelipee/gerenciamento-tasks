@@ -64,3 +64,5 @@ Route::middleware(['guest'])->group(function ()
     ->middleware(VerifyEmail::class);
 });
 
+Route::get('about',[UserController::class,'about'])->name('about');
+

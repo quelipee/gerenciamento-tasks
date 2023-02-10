@@ -18,6 +18,11 @@ class UserController extends Controller
         return view('login');
     }
 
+    public function about()
+    {
+        return view('about');
+    }
+
     public function register(UserRequest $request)
     {
         $user = $this->userService->createUser($request);
