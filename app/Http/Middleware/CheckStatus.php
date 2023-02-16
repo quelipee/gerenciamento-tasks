@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Task;
 use App\Models\User;
 use App\Services\TaskService;
 use Carbon\Carbon;
@@ -21,14 +22,13 @@ class CheckStatus
 
     public function handle(Request $request, Closure $next)
     {
-        $user = User::with('task')->find(Auth::user()->id);
-        $use1 = $user->task;
-        foreach ($use1 as $use)
+        $task = Task::all();
+        foreach ($task as $task_end)
         {
-            if ($use['date_end'] <= Carbon::now()->toDateString() and $use['status'] == 'Em andamento')
+            if ($task_end['date_end'] <= Carbon::now()->toDateString() and  $task_end['status'] == 'Em andamento')
             {
-                $use['status'] = "Finalizado";
-                $use->save();
+                $task_end['status'] = "Finalizado";
+                $task_end->save();
             }
         }
         return $next($request);

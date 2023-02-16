@@ -32,7 +32,8 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('view/{task:id}',[TaskController::class,'taskView'])->name('task.view');
 
-    Route::get('see-all-tasks',[TaskController::class,'allTasksUsers'])->name('all.tasks.users');
+    Route::get('see-all-tasks',[TaskController::class,'allTasksUsers'])->name('all.tasks.users')
+        ->middleware(CheckStatus::class);
     Route::get('task-user/{user:name}',[TaskController::class,'taskUser'])->name('see.task.user');
     Route::get('task-user/{user:name}/{task:id}',[TaskController::class,'taskUserView'])->name('see.task.id.user');
 
